@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes');
 const db = require('./models').sequelize;
@@ -8,6 +9,9 @@ const app = express();
 
 // set port
 app.set('port', process.env.PORT || 5000);
+
+// Enable All CORS Requests
+app.use(cors());
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
