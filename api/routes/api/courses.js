@@ -63,8 +63,13 @@ router.post('/', authUser, (req, res, next) => {
 router.put('/:id', authUser, findOneCourse, async (req, res, next) => {
   const course = await req.course;
   const courseUpdate = await req.body;
-  if (!courseUpdate.title || !courseUpdate.description) {
-    const err = new Error('Validation Error for title / description.');
+  if (!courseUpdate.title) {
+    const err = new Error('Please provide a "Title"');
+    err.status = 400;
+    return next(err);
+  }
+  if (!courseUpdate.description) {
+    const err = new Error('Please provide a "Description"');
     err.status = 400;
     return next(err);
   }
