@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import axios from 'axios';
+import React, { Component, Fragment } from 'react'
+import axios from 'axios'
 
 // Components
-import Header from '../Header/Header';
-import Validation from '../Errors/Validation';
+import Header from '../Header/Header'
+import Validation from '../Errors/Validation'
 
 export default class CreateCourse extends Component {
   constructor() {
     super()
     this.state = {
-      user: JSON.parse(localStorage.getItem('auth')).user,
+      currentUser: JSON.parse(localStorage.getItem('auth')).user,
       title: '',
       description: '',
       estimatedTime: '',
@@ -30,7 +30,7 @@ export default class CreateCourse extends Component {
     event.preventDefault();
     const { 
       title, 
-      user,
+      currentUser,
       description,
       estimatedTime,
       materialsNeeded } = this.state;
@@ -38,8 +38,8 @@ export default class CreateCourse extends Component {
       method: 'post',
       url: 'http://localhost:5000/api/courses',
       auth: {
-        username: user.username,
-        password: user.password
+        username: currentUser.username,
+        password: currentUser.password
       },
       data: { 
         title,
@@ -63,7 +63,7 @@ export default class CreateCourse extends Component {
   }
 
   render() {
-    const { user, title, description, estimatedTime,
+    const { currentUser, title, description, estimatedTime,
       materialsNeeded, errorMessages } = this.state;
 
     return (
@@ -90,7 +90,7 @@ export default class CreateCourse extends Component {
                     placeholder="Course title..."
                     value={title} 
                     onChange={this.handleChange} />
-                  <p>By {`${user.firstName} ${user.lastName}`}</p>
+                  <p>By {`${currentUser.firstName} ${currentUser.lastName}`}</p>
                 </div>
                 <div className="course--description">
                   <div>
