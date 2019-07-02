@@ -4,7 +4,7 @@ import axios from 'axios';
 // Create User Log In Context
 export const UserLog = createContext();
 
-// User Log In Class / Context.Provider
+// User Log Provider values set in class component
 export class UserLogProvider extends Component {
   constructor() {
     super()
@@ -45,10 +45,10 @@ export class UserLogProvider extends Component {
       })
     })
     .catch( error => {
-      if (error.response.status === 500) {
-        this.props.history.push('/error');
+      if (error.response.status === 404) {
+        this.props.history.push('/notfound');
       } else {
-      this.props.history.push('/notfound');
+        this.props.history.push('/error');
       }
     })
   }
