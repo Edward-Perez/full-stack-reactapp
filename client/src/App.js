@@ -22,19 +22,6 @@ import { UserLogProvider } from './components/Context/UserLog';
 
 
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      statusCode: null,
-      error: [],
-      userAuth: false
-    }
-  }
-
-  // Error Handler
-  errorHandler = (err) => {
-    console.log(err);
-  }
 
   render() {
   return (
