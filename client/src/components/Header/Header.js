@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
-// Header Function Component
 const Header = () => {
   // Retrieve "auth" key values from Local Storage
-  // Allows User to remain logged in after refreshing page
   const authUser = JSON.parse(localStorage.getItem('auth'));
   
   return (
