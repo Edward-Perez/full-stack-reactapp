@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 // Component 
-import Header from '../Header/Header';
+import Header from '../Header/Header'
 
 // Context 
-import { UserLog } from '../Context/UserLog';
+import { UserLog } from '../Context/UserLog'
 
 export default class UserSignIn extends Component {
   constructor() {
@@ -40,8 +40,8 @@ export default class UserSignIn extends Component {
             : null 
             }
             <div>
-              <form onSubmit={ async e => {
-                e.preventDefault();
+              <form onSubmit={ async event => {
+                event.preventDefault();
                 await value.userSignIn(this.state);
                 this.setState({   
                   emailAddress: '',
@@ -69,8 +69,8 @@ export default class UserSignIn extends Component {
                   <button className="button" type="submit">Sign In</button>
                   <button 
                     className="button button-secondary" 
-                    onClick={ (e) => {
-                      e.preventDefault();
+                    onClick={ event => {
+                      event.preventDefault();
                       this.props.history.push('/');
                   }}>Cancel</button>
                 </div>
