@@ -92,8 +92,10 @@ export default class UpdateCourse extends Component {
         const errorMessages = error.response.data.message;
         if (statusCode === 400) {
           this.setState({ errorMessages: [errorMessages] });
-        } else { 
-          console.log(error); 
+        } else if (statusCode === 500) {
+          this.props.history.push('/error');
+        } else {
+          this.props.history.push('/notfound');
         }
       })
   }
