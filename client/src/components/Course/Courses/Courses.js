@@ -19,19 +19,19 @@ export default class Courses extends Component {
     this.allCourses();
   }
 
-  // API Call to retrieve all courses from database
+  // Retrieve all courses from database
   allCourses = () => {
     axios.get('http://localhost:5000/api/courses')
-      .then(res => {
+      .then(response => {
         this.setState({
-          courses: res.data.courses
+          courses: response.data.courses
         })
       })
       .catch(error => {
-        if (error.response.status === 500) {
-          this.props.history.push('/error');
+        if (error.response.status === 404) {
+          this.props.history.push('/notfound');
         } else {
-        this.props.history.push('/notfound');
+          this.props.history.push('/error');
         }
       });
   }
@@ -60,6 +60,7 @@ export default class Courses extends Component {
               </svg>New Course</h3>
             </Link>
           </div>
+          
         </div>
       </Fragment>
     )
