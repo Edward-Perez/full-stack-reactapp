@@ -89,7 +89,7 @@ export default class UserSignIn extends Component {
                     className="button button-secondary" 
                     onClick={ event => {
                       event.preventDefault();
-                      this.props.history.goBack();
+                      this.props.history.push('/');
                   }}>Cancel</button>
                 </div>
               </form>
