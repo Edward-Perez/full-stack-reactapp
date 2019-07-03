@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 // Component 
 import Header from '../Header/Header'
@@ -12,7 +12,8 @@ export default class UserSignIn extends Component {
     super()
     this.state = {
       emailAddress: '',
-      password: ''
+      password: '',
+      statusCode: null
     }
   }
 
@@ -23,31 +24,48 @@ export default class UserSignIn extends Component {
     });
   }
 
+  // UserLog Context
+  updateStatus = async UserLog => {
+    await UserLog.userSignIn(this.state)
+  }
+
+  // Sign In Form // Reset/Set State from localStorage values that updateStatus() has set for us
+  handleSubmit = () => {
+    let status = null;
+    if(localStorage.getItem('status')) {
+      status = JSON.parse(localStorage.getItem('status')).status;
+      this.setState({
+        emailAddress: '',
+        password: '',
+        statusCode: status
+      })
+    }
+  }
+
   render() {
-    const { emailAddress, password } = this.state;
+    const { emailAddress, password, statusCode } = this.state;
 
     return (
       <UserLog.Consumer>
         { value => 
         <Fragment>
+          { statusCode === 200 ? this.props.history.goBack() : null }
+          { statusCode === 500 ? <Redirect to="/error" /> : null }
+          { statusCode === 404 ? <Redirect to="/notfound" /> : null }
         <Header />
         <div className="bounds">
           <div className="grid-33 centered signin">
             <h1>Sign In </h1>
             {
             value.state.status === 401
-            ? <p>Incorrect Email or Password</p>
+            ? <h2>Incorrect Email or Password</h2>
             : null 
             }
             <div>
               <form onSubmit={ async event => {
                 event.preventDefault();
-                await value.userSignIn(this.state);
-                this.setState({   
-                  emailAddress: '',
-                  password: ''
-                })
-                this.props.history.goBack();
+                await this.updateStatus(value);
+                await this.handleSubmit(event);
               }}>
                 <input 
                   id="emailAddress" 
@@ -71,7 +89,7 @@ export default class UserSignIn extends Component {
                     className="button button-secondary" 
                     onClick={ event => {
                       event.preventDefault();
-                      this.props.history.push('/');
+                      this.props.history.goBack();
                   }}>Cancel</button>
                 </div>
               </form>

@@ -1,5 +1,5 @@
-import React, { Component, createContext } from 'react';
-import axios from 'axios';
+import React, { Component, createContext } from 'react'
+import axios from 'axios'
 
 // Create User Log In Context
 export const UserLog = createContext();
@@ -39,23 +39,19 @@ export class UserLogProvider extends Component {
       return response;
     })
     .then(response => {
-      this.setState({
-        user: response.data,
-        status: response.status
-      })
+      localStorage.setItem('status', JSON.stringify({ 
+      status: response.status
+      }))
     })
-    .catch( error => {
-      if (error.response.status === 500) {
-        this.props.history.push('/error');
-      } else {
-        this.props.history.push('/notfound');
-      }
+    .catch(error => {
+      this.setState({ status: error.response.status })
     })
   }
 
   // Sign User Out / Reset State / Remove "auth" key from local storage
   userSignOut = () => {
     localStorage.removeItem('auth');
+    localStorage.removeItem('status');
     this.setState({
       user: [],
       status: null
