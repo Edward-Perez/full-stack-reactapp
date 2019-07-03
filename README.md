@@ -13,7 +13,7 @@ This full stack application provides a way for users to administer a school data
   * [React Project](./client/README.md)
 
 ## Getting Started
-*You will need 2 terminal windows to run this project*
+**You will need 2 terminal windows to run this project**
 * First clone or download this respository
 * Open files in your code editor
 * Open two terminal windows
