@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-  // Retrieve "auth" key values from Local Storage
+  // Retrieve "auth" key values from Local Storage if present
   const authUser = JSON.parse(localStorage.getItem('auth'));
   
   return (
