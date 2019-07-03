@@ -1,3 +1,71 @@
+# Full Stack App with React and a REST API
+### Project 10 from the Treehouse Full Stack Javascript TechDegree program. 
+**_Displays knowledge of React JSX, React Router, React Context API, and Create React App._**
+
+This full stack application provides a way for users to administer a school database containing information about courses. Users can interact with the database by retrieving a list of courses, view details to a specific course, as well as creating, updating and deleting courses in the database with the condition of creating a user account. 
+
+### Project Requirements
+### React Project
+  * React project folder is named "client"
+  * Running `npm start` launches app
+### REST API
+  * REST API folder is named "api"
+  * Supports for Cross-Origin Resource Sharing (CORS)
+### Stateful Class Components
+  * Courses - List all courses
+  * CourseDetail - Renders details for a particular course
+  * UserSignIn - Renders a sign in form 
+  * UserSignUp - Renders a sign up form
+  * CreateCourse - Renders a form to create a new course
+  * UpdateCourse - Renders a form to allow a user to update an existing course
+### Stateless Functional Components
+  * Header - Renders top menu navigation bar
+  * UserSignOut - Signs out a authenticated user
+### Routes (path - component)
+  * / - Courses
+  * /courses/create - CreateCourse
+  * /courses/:id/update - UpdateCourse
+  * /courses/:id - CourseDetail
+  * /signin - UserSignIn
+  * /signup - UserSignUp
+  * /signout - UserSignOut
+### User Authentication
+  * Global state is kept in the App component or managed with React Context API
+  * signIn() method is globally available which authenticates a user using their email address and password then persists the authenticated user's information (including their password) to the global state
+  * signOut() method is globally available that removes the authenticated user's information (including their password) from the global state
+### Protected Routes
+  * /courses/create
+  * /courses/:id/update
+### User Authorization
+  * CourseDetail component only renders the "Update Course" and "Delete Course" buttons if:
+    * There's an authenticated user
+    * The authenticated user's ID matches that of the user who owns the course
+### Validation Errors
+  * "Sign Up", "Create Course", and "Update Course" display validation errors returned from the REST API
+
+### Markdown Support
+  * "Course Detail" renders the course description and materialsNeeded properties as markdown formatted text
+
+### Exceeds Requirements
+* CourseDetail component redirects users to the /notfound path if the requested course isn't returned from the REST API.
+
+* UserSignIn component redirects users back to the previous screen after successfully signing in.
+
+* UpdateCourse component:
+  * Redirects users to /notfound path if the requested course isn't returned from the REST API
+  * Redirects users to /forbidden path if the requested course isn't owned by the authenticated user
+* Components redirect users to the /error path when requests to the REST API return a "500 Internal Server Error" HTTP status code.
+* The app contains the following stateless functional components:
+  * NotFound -The component renders a message letting the user know that the requested page can't be found.
+  * Forbidden - The component renders a message letting the user know that they can't access the requested page.
+  * UnhandledError - The component renders a message letting the user know that an unexpected error has occurred.
+* Routes (path - component) have been configured 
+  * /notfound - NotFound
+  * /forbidden - Forbidden
+  * /error - UnhandledError
+  * If a route does not matched the NotFound component is rendered
+* The app persists user credentials using an HTTP cookie or local storage so that the user's authenticated state is maintained even if the application is reloaded or loaded into a new browser tab
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
