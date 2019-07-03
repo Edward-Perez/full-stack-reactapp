@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 // Components 
@@ -148,7 +148,7 @@ export default class UserSignUp extends Component {
                 </form>
               </div>
               <p>&nbsp;</p>
-              <p>Already have a user account? <a href="/signin">Click here</a> to sign in!</p>
+              <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>
             </div>
           </div>
         </Fragment> 
