@@ -20,7 +20,7 @@ export default class UpdateCourse extends Component {
     }
   }
 
-  // Gather courses/:id param, run API call func with param
+  // Retieve course id param, run getCourses func with param
   componentDidMount() {
     const courseId = this.props.match.params.id;
     this.getCourses(courseId);
@@ -30,8 +30,8 @@ export default class UpdateCourse extends Component {
   getCourses = courseId => {
     axios.get(`http://localhost:5000/api/courses/${courseId}`)
       .then(response => {
-        const courseOwnerId = response.data.User.id;
         const course = response.data;
+        const courseOwnerId = course.User.id;
         const { title, description, estimatedTime, materialsNeeded } = course;
         this.setState({
           courseOwnerId,
@@ -154,7 +154,7 @@ export default class UpdateCourse extends Component {
                         type="text" 
                         className="course--time--input"
                         placeholder="Hours" 
-                        value={estimatedTime}
+                        value={estimatedTime || ''}
                         onChange={this.handleChange} />
                     </li>
                     <li className="course--stats--list--item">
@@ -165,7 +165,7 @@ export default class UpdateCourse extends Component {
                           name="materialsNeeded" 
                           className="" 
                           placeholder="List materials..."
-                          value={materialsNeeded}
+                          value={materialsNeeded || ''}
                           onChange={this.handleChange} >
                         </textarea>
                       </div>
