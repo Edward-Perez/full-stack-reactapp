@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 // Components 
@@ -17,7 +18,14 @@ export default class UserSignUp extends Component {
       emailAddress: '',
       password: '',
       confirmPassword: '',
-      errorMessages: null
+      errorMessages: null,
+      redirectUser: false
+    }
+  }
+  // Redirect User to Home Page after succefully signing
+  redirect = () => {
+    if (this.state.redirectUser) {
+      return <Redirect to='/' />
     }
   }
 
@@ -28,32 +36,38 @@ export default class UserSignUp extends Component {
     });
   }
 
-  // Form submission
-  handleSubmit = (event) => {
+  // Form submission 
+  handleSubmit = (event, UserLog) => {
     event.preventDefault();
-    const { firstName, lastName, emailAddress, 
-      password, confirmPassword } = this.state;
+
+    const { firstName, lastName, emailAddress, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
-       return this.setState({ errorMessages: ["Passwords do not match"] });
+    return this.setState({ errorMessages: ['Passwords do not match'] })
     }
+
     axios({
       method: 'post',
       url: 'http://localhost:5000/api/users',
       data: { firstName, lastName, emailAddress, password }
     })
-    .then()
+    .then(async () => { 
+      await UserLog.userSignIn({emailAddress, password})
+    })
+    .then(() => {
+      this.setState({ redirectUser: true })
+    })
     .catch(error => {
       const statusCode = error.response.status;
       const errorData = error.response.data.error.type;
 
       if (statusCode === 400) {
         const errorMessages = errorData.map(msg => msg.message);
-        this.setState({ errorMessages });
+        return this.setState({ errorMessages, statusCode });
       } else if (statusCode === 500) {
-        this.props.history.push('/error');
+        return this.props.history.push('/error');
       } else {
-        this.props.history.push('/notfound');
+        return this.props.history.push('/notfound');
       }
     })
   }
@@ -65,6 +79,9 @@ export default class UserSignUp extends Component {
       <UserLog.Consumer>
         {value => 
         <Fragment>
+          {
+            this.redirect()
+          }
           <Header />
           <div className="bounds">
             <div className="grid-33 centered signin">
@@ -75,12 +92,10 @@ export default class UserSignUp extends Component {
               }
               <h1>Sign Up</h1>
               <div>
-                <form onSubmit={async event => {
-                  const userInput = { emailAddress, password };
-                  await this.handleSubmit(event);
-                  await value.userSignIn(userInput);
-                  this.props.history.push('/');
-                }}>
+                <form onSubmit={(event) => {
+                  const UserLog = value;
+                  this.handleSubmit(event, UserLog);
+                 }} >
                   <input 
                     id="firstName" 
                     name="firstName" 
