@@ -202,12 +202,14 @@ svg {
 /* line 5, ../sass/global.sass */
 body {
   font-family: "Work Sans", sans-serif;
-  background: #fff;
+  background: #000000;
+  color: white;
 }
 
 /* line 13, ../sass/global.sass */
 .header {
-  background: #57496e;
+  background: #000000;
+  border-bottom: 1px solid #555; 
   padding: 20px 0;
   margin-bottom: 30px;
 }
@@ -255,8 +257,6 @@ body {
 
 /* line 44, ../sass/global.sass */
 .actions--bar {
-  border-bottom: 1px solid #d5f9fe;
-  background: #f8feff;
   padding: 20px 0;
   margin-top: -30px;
 }
@@ -339,7 +339,7 @@ p {
 
 /* line 102, ../sass/global.sass */
 .course--module {
-  background: #7c689b;
+  background: #9933CC;
   border-radius: 8px;
   padding: 30px;
   margin-bottom: 30px;
@@ -368,7 +368,7 @@ p {
   font-family: "Cousine";
   font-size: 14px;
   font-weight: 100;
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
   margin-bottom: 10px;
   font-weight: normal;
 }
@@ -428,18 +428,18 @@ p {
 /* line 164, ../sass/global.sass */
 .course--header .course--label {
   font-size: 18px;
-  color: #999;
+  color: #fff;
 }
 /* line 167, ../sass/global.sass */
 .course--header .course--title {
   font-size: 48px;
   margin-bottom: 15px;
-  color: #332a40;
+  color: #fff;
 }
 /* line 171, ../sass/global.sass */
 .course--header p {
   font-size: 18px;
-  color: #b1a5c4;
+  color: #fff;
   font-weight: 100;
 }
 /* line 176, ../sass/global.sass */
@@ -460,7 +460,7 @@ p {
 .course--description p {
   font-size: 16px;
   line-height: 1.8;
-  color: #444;
+  color: white;
 }
 /* line 195, ../sass/global.sass */
 .course--description ol,
@@ -493,7 +493,7 @@ p {
 /* line 210, ../sass/global.sass */
 .course--description ol li:before {
   content: counter(step-counter);
-  color: #999;
+  color: #fff;
   font-size: 18px;
   position: absolute;
   left: 0;
@@ -506,7 +506,7 @@ p {
   margin: 9px 0 0 -30px;
   width: 5px;
   height: 5px;
-  border: 1px solid #999;
+  border: 1px solid #fff;
   border-radius: 10px;
   display: block;
 }
@@ -515,7 +515,7 @@ p {
 .course--description h2,
 .course--description h3 {
   font-family: "Work Sans", sans-serif;
-  color: #222;
+  color: #fff;
   margin-bottom: 30px;
 }
 /* line 235, ../sass/global.sass */
@@ -535,7 +535,7 @@ p {
   font-size: 18px;
   font-weight: 100;
   margin: 0 0 10px;
-  color: #999;
+  color: #fff;
   display: block;
 }
 /* line 287, ../sass/global.sass */
@@ -546,7 +546,7 @@ p {
   font-size: 14px;
   padding: 0 0 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-overflow: ellipsis;
@@ -573,6 +573,7 @@ p {
 }
 /* line 311, ../sass/global.sass */
 .course--time--input {
+  color: #00000;
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
   font-weight: bold;
@@ -590,12 +591,11 @@ textarea {
   width: 100%;
   min-height: 300px;
   border-radius: 8px;
-  background: #fff;
   padding: 15px;
   font-size: 16px;
   margin: 0 0 20px;
   border: 1px solid #ccc4d8;
-  color: #666;
+  color: #000000;
   line-height: 1.8;
   outline: none;
   font-family: "Cousine";
@@ -623,7 +623,7 @@ textarea:-ms-input-placeholder {
 }
 /* line 485, ../sass/global.sass */
 textarea:focus {
-  border-color: #7c689b;
+  border-color: #fff;
 }
 
 /* line 488, ../sass/global.sass */
@@ -678,7 +678,7 @@ input:focus {
 
 /* line 507, ../sass/global.sass */
 .button {
-  background: #7c689b;
+  background: #9933CC;
   color: #fff;
   font-family: "Work Sans", sans-serif;
   font-size: 18px;
@@ -701,14 +701,14 @@ input:focus {
 }
 /* line 522, ../sass/global.sass */
 .button:not(.button-secondary):hover {
-  background: #63537d;
+  background: #9933CC;
 }
 
 /* line 525, ../sass/global.sass */
 .button-secondary {
-  color: #7c689b;
+  color: #9933CC;
   background: none;
-  box-shadow: 0 0 0 2px #7c689b inset;
+  box-shadow: 0 0 0 2px #9933CC inset;
   -webkit-transition: box-shadow 0.2s, color 0.2s;
   -moz-transition: box-shadow 0.2s, color 0.2s;
   -ms-transition: box-shadow 0.2s, color 0.2s;
@@ -717,7 +717,7 @@ input:focus {
 }
 /* line 530, ../sass/global.sass */
 .button-secondary:hover {
-  color: #63537d;
+  color: #9933CC;
   box-shadow: 0 0 0 2px #63537d inset;
 }
 
